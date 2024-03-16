@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './CSS/App.css';
+import { IoMdSearch } from "react-icons/io";
+import logo from './algomaniac.png';
+import sorting from'./images/sorting.png';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <div id="container">
+          <div id="image-container" >
+            <img src={logo} id="picture" alt="logo"></img>
+          </div>
+          <div id="search-container">
+            <IoMdSearch color="white" id="search-icon"/>
+            <input type="text" placeholder='Search Something'></input>
+          </div>
+        </div>
+        <div id="flex-algorithm-container">
+        <div id="algorithm-container">
+          <img src={sorting} id="sorting-picture" alt="logo"></img>
+          <img src={sorting} id="sorting-picture" alt="logo"></img>
+          <img src={sorting} id="sorting-picture" alt="logo"></img>
+          <img src={sorting} id="sorting-picture" alt="logo"></img>
+          </div>
+        </div>
     </div>
   );
 }
