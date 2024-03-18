@@ -1,15 +1,21 @@
 .sort-bar{
     display:flex;
-    
+    align-items: center;;
 }
 .inside-sort-bar{
     display:flex;
     align-items:center;
 }
 .sort-button{
+    -webkit-text-fill-color: aqua;
+    text-align: center;
+    vertical-align: middle;
+    height:35px;
+    width: 70px;
     margin-left:auto;
     background-color:green;
-    border-radius: 20px;
+    border-radius: 10px;
+    padding:0px;
 }
 button {
     background: unset ;
