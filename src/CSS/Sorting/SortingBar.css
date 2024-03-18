@@ -1,0 +1,32 @@
+.sort-bar{
+    display:flex;
+    
+}
+.inside-sort-bar{
+    display:flex;
+    align-items:center;
+}
+.sort-button{
+    margin-left:auto;
+    background-color:green;
+    border-radius: 20px;
+}
+button {
+    background: unset ;
+    border: unset !important;
+    outline: unset !important; 
+    padding:19px;
+}
+select{
+    background: unset !important;
+    border: unset !important;
+    outline: unset !important; 
+    padding:19px;
+}
+
+*{
+    font-size: 20px;
+}
+.sort-bar *:hover{
+    cursor:pointer;
+}
