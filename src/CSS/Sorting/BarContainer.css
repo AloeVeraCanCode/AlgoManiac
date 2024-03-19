@@ -1,0 +1,10 @@
+.bar-container{
+    display:flex;
+    justify-content: center;
+}
+.bar{
+    padding: 10px;
+    margin:3px;
+    /* height: 170px;  */
+    background-color: rgb(186, 236, 186);
+}

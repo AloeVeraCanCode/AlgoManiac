@@ -1,12 +1,22 @@
 import React from 'react';
 import '../../CSS/Sorting/SortingBar.css';
-export default function () {
+export default function (props) {
+   const setArray=()=>{
+        var len=10;
+        var arr=[];
+        for(let i=0;i<len;i++)
+        {
+            arr.push(Math.floor(Math.random()*900)+30);
+        }
+        props.array.setobj(arr);
+        console.log(arr);
+    }
   return (
-    <div class="sort-bar">
+    <div className="sort-bar">
       <h3>Sorting</h3>
-      <div class="inside-sort-bar">
+      <div className="inside-sort-bar">
         <button type="submit" href="/">Home</button>
-        <button href="/">Randomize</button>
+        <button href="/" onClick={setArray}>Randomize</button>
         <select name="Merge Sort" id="cars">
             <option value="">Quick Sort</option>
             <option value="">Merge Sort</option>
@@ -14,7 +24,7 @@ export default function () {
             <option value="">Selection Sort</option>
         </select>
       </div>
-      <button class="sort-button">Sort</button>
+      <button className="sort-button">Sort</button>
     </div>
   )
 }
