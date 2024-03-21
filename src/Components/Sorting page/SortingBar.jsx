@@ -2,7 +2,7 @@ import React from 'react';
 import '../../CSS/Sorting/SortingBar.css';
 export default function (props) {
    const setArray=()=>{
-        var len=10;
+        var len=Math.floor(Math.random()*20)+2;
         var arr=[];
         for(let i=0;i<len;i++)
         {
