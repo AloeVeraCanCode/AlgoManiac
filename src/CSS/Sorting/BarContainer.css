@@ -2,9 +2,15 @@
     display:flex;
     justify-content: center;
 }
-.bar{
+.upperbar{
     padding: 10px;
     margin:3px;
     /* height: 170px;  */
     background-color: rgb(186, 236, 186);
+}
+.lowerbar{
+    padding: 10px;
+    margin:3px;
+    /* height: 170px;  */
+    background-color: rgb(246, 130, 80);
 }
