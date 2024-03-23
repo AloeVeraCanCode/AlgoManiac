@@ -17,7 +17,14 @@ export default function (props) {
     }
      async function sort()
     {
+        var selection=document.getElementById('sortingMethods');
+        var method=selection.options[selection.selectedIndex].text;;
+        if(method==='Insertion Sort')
         await InsertionSort(props);
+        else if(method==='Merge Sort')
+        {
+            
+        }
     }
   return (
     <div className="sort-bar">
@@ -25,8 +32,8 @@ export default function (props) {
       <div className="inside-sort-bar">
         <button type="submit" href="/">Home</button>
         <button href="/" onClick={setArray}>Randomize</button>
-        <select name="Merge Sort" id="cars">
-            <option value="">Quick Sort</option>
+        <select name="Merge Sort" id="sortingMethods">
+            <option value="">Insertion Sort</option>
             <option value="">Merge Sort</option>
             <option value="">Bubble Sort</option>
             <option value="">Selection Sort</option>
