@@ -5,6 +5,24 @@ import { InsertionSort } from './SortingAlgorithms/Insertion.js';
 import { mergeSort } from './SortingAlgorithms/MergeSort.js';
 export default function (props) {
    const [arr,setArr]=useState([]);
+   function disablePointers()
+   {
+        document.getElementById("sortBtn").disabled = true;
+        document.getElementById("sortBtn").style.cursor = 'wait';
+        document.getElementById("sortingMethods").disabled = true;
+        document.getElementById("sortingMethods").style.cursor = 'wait';
+        document.getElementById("random").disabled = true;
+        document.getElementById("random").style.cursor = 'wait';
+   }
+   function enablePointers()
+   {
+        document.getElementById("sortBtn").disabled = false;
+        document.getElementById("sortBtn").style.cursor =' pointer';
+        document.getElementById("sortingMethods").disabled = false;
+        document.getElementById("sortingMethods").style.cursor = ' pointer';
+        document.getElementById("random").disabled = false;
+        document.getElementById("random").style.cursor = ' pointer';
+   }
    const setArray=()=>{
         var len=6;
         // Math.floor(Math.random()*20)+2;
@@ -20,18 +38,20 @@ export default function (props) {
      async function sort()
     {
         var selection=document.getElementById('sortingMethods');
-        var method=selection.options[selection.selectedIndex].text;;
-        if(method==='Insertion Sort')
+        var method=selection.options[selection.selectedIndex].text;
+        disablePointers();
+        if(method==='Insertion Sort')    
         await InsertionSort(props);
         else if(method==='Merge Sort')
         await mergeSort(props);
+        enablePointers()
     }
   return (
     <div className="sort-bar">
       <h3>Sorting</h3>
       <div className="inside-sort-bar">
         <button type="submit" href="/">Home</button>
-        <button href="/" onClick={setArray}>Randomize</button>
+        <button href="/" id="random" onClick={setArray}>Randomize</button>
         <select name="Merge Sort" id="sortingMethods">
             <option value="">Insertion Sort</option>
             <option value="">Merge Sort</option>
@@ -39,7 +59,7 @@ export default function (props) {
             <option value="">Selection Sort</option>
         </select>
       </div>
-      <button className="sort-button"  onClick={sort}>Sort</button>
+      <button className="sort-button"  id='sortBtn' onClick={sort}>Sort</button>
     </div>
   )
 }
