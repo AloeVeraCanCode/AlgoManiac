@@ -16,7 +16,7 @@ export async function InsertionSort(props)
                 {
                     var t=tarr[j];tarr[j]=tarr[j-1];tarr[j-1]=t;
                 }
-                else { break;}
+                else  break;
                 var x=[];
                 for(var k=0;k<len;k++)x.push(tarr[k]);
                 arrayOfArray.push(x);
@@ -30,9 +30,9 @@ export async function InsertionSort(props)
             await(changeArray(x,props))
             
         }
-        console.log(props);
-        console.log("Before");
-        console.log(arrayOfArray)
-        console.log("Hain Hain!!")
-        console.log("Finished!!")
+        // console.log(props);
+        // console.log("Before");
+        // console.log(arrayOfArray)
+        // console.log("Hain Hain!!")
+        // console.log("Finished!!")
 }

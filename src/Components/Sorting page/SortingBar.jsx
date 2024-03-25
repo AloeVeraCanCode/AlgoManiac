@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import '../../CSS/Sorting/SortingBar.css';
 import './SortingAlgorithms/Insertion.js'
 import { InsertionSort } from './SortingAlgorithms/Insertion.js';
+import { mergeSort } from './SortingAlgorithms/MergeSort.js';
 export default function (props) {
    const [arr,setArr]=useState([]);
    const setArray=()=>{
-        var len=Math.floor(Math.random()*20)+2;
+        var len=6;
+        // Math.floor(Math.random()*20)+2;
         var tarr=[];
         for(let i=0;i<len;i++)
         {
@@ -22,9 +24,7 @@ export default function (props) {
         if(method==='Insertion Sort')
         await InsertionSort(props);
         else if(method==='Merge Sort')
-        {
-            
-        }
+        await mergeSort(props);
     }
   return (
     <div className="sort-bar">

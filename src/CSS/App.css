@@ -19,7 +19,7 @@
   gap:100px;
   grid-template-rows:repeat(3,300px);
   grid-template-columns:repeat(3,300px);
-  background-color: rgb(246, 245, 243);
+  background-color: #486581;
 }
 #algorithm-container>a>img{
   /* grid-column-start: 1 ;

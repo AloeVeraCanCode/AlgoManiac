@@ -4,7 +4,7 @@ import BarContainer from '../../Components/Sorting page/BarContainer';
 function SortingPage() {
     const [randomizedArray,setRandomizedArray]=React.useState([]);
     const [colorArray,setColorArray]=React.useState([]);
-
+    // const []
   return (
     <div>
       <SortingBar array={{obj:randomizedArray,setobj:setRandomizedArray}}/>
