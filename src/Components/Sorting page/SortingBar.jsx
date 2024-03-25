@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../CSS/Sorting/SortingBar.css';
-import './SortingAlgorithms/Insertion.js'
+import './SortingAlgorithms/Insertion.js';
 import { InsertionSort } from './SortingAlgorithms/Insertion.js';
 import { mergeSort } from './SortingAlgorithms/MergeSort.js';
 export default function (props) {
@@ -13,8 +13,8 @@ export default function (props) {
         {
             tarr.push([Math.floor(Math.random()*900)+30,'upperbar']);
         }
-        props.array.setobj(tarr);
-        setArr(tarr);
+        props.array.setobj([tarr,tarr]);
+        setArr([tarr,tarr]);
         console.log(tarr);
     }
      async function sort()
