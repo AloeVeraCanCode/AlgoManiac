@@ -13,8 +13,6 @@ export default function BarContainer(props) {
     {
         m=Math.max(props.upperarray[j][0],m);
     }
-    // var heightOfBar=props.upperarray.map(elem=>{((elem[0]/m)*h)});
-    // console.log(m);
     const heightMap=new Map();
     for(var j=0;j<props.lowerarray.length;j++)
     {

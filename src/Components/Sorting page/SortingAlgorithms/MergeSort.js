@@ -8,7 +8,6 @@ export async function mergeSort(props)
 }
 async function rec(i,j)
 {
-    console.log('('+i+','+j+')');
     if(i==j)return;
     let mid=Math.floor((i+j)/2);
     await rec(i,mid);await rec(mid+1,j);
@@ -17,7 +16,6 @@ async function rec(i,j)
 var num=0;
 async function merge(a,b,c,d)
 {
-    console.log('('+a+','+b+')'+'('+c+','+d+')'+array)
     let m,n=c;m=a;
     let x=[],y=[];
     for(var i=0;i<array.length;i++)
@@ -29,8 +27,6 @@ async function merge(a,b,c,d)
         x[j][1]='current';
     }
     await changeArray([x,y],p);
-    // if(x===array)console.log("YES");else console.log("NO");
-    // console.log(x+"Before everything began");
     var j=a;
     while((a<=b)&&(c<=d))
     {
@@ -47,39 +43,26 @@ async function merge(a,b,c,d)
         }
         await changeArray([x,y],p);
     }
-    // console.log(array+" array one iteration");
-    console.log(y+" x one iteration$$$$$$$");
-    // console.log('('+a+','+b+')'+'('+c+','+d+')')
     while(a<=b)
     {
-        // console.log("First"+array[a][0])
         y[j][1]='lowerbar';
         x[a][1]='lowerbar';
         y[j++][0]=x[a++][0];
-       await changeArray([x,y],p);
-    //    console.log("Executed")
+        await changeArray([x,y],p);
     }
     while(c<=d)
     {
-        // console.log("Second"+array[c][0])
         y[j][1]='lowerbar';
         x[c][1]='lowerbar';
         y[j++][0]=x[c++][0];
-       await changeArray([x,y],p);
-    //    console.log("Executed")
+        await changeArray([x,y],p);
     }
-    // console.log(y+"!!!");
-
-    
-    // console.log(m+" "+d+" ")
     for(;m<=d;m++)
     {
         y[m][1]='upperbar';
         x[m][1]='upperbar';
         array[m][0]=y[m][0];
        await changeArray([x,y],p);
-    //    console.log("Executed")
     }
-    // await changeArray([x,y],p);
 
 }
