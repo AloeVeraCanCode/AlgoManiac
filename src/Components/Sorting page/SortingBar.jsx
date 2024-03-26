@@ -3,6 +3,8 @@ import '../../CSS/Sorting/SortingBar.css';
 import './SortingAlgorithms/Insertion.js';
 import { InsertionSort } from './SortingAlgorithms/Insertion.js';
 import { mergeSort } from './SortingAlgorithms/MergeSort.js';
+import { BubbleSort } from './SortingAlgorithms/BubbleSort.js';
+
 export default function (props) {
    const [arr,setArr]=useState([]);
    function disablePointers()
@@ -43,6 +45,8 @@ export default function (props) {
         await InsertionSort(props);
         else if(method==='Merge Sort')
         await mergeSort(props);
+        else if(method==='Bubble Sort')
+        await BubbleSort(props);
         enablePointers()
     }
   return (

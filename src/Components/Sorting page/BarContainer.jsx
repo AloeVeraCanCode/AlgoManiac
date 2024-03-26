@@ -26,7 +26,7 @@ export default function BarContainer(props) {
     <>
     <div className='bar-container'>
     {
-        props.upperarray.map((elem)=><div  className={elem[1]} style={{ height: heightMap.get(elem[0]) , backgroundColor:(elem[1]=='lowerbar'?'white':(elem[1]=='current'?'#d1ff3766':'rgb(186, 236, 186)')) ,color:(elem[1]=='lowerbar'?'white':'black')}} >{elem[0]}</div>)
+        props.upperarray.map((elem)=><div  className={elem[1]} style={{ height: heightMap.get(elem[0]) , backgroundColor:(elem[1]=='lowerbar'?'white':(elem[1]=='current'?'#d1ff3766':(elem[1]=='sorted'?'#b979ec':'rgb(186, 236, 186)'))) ,color:(elem[1]=='lowerbar'?'white':'black')}} >{elem[0]}</div>)
     }
     </div>
     <div className='bar-container'>
