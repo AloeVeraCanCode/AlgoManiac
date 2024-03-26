@@ -45,11 +45,7 @@ async function merge(a,b,c,d)
             x[c][1]='lowerbar';
             y[j++][0]=x[c++][0];
         }
-        // console.log(array+" inside  one iteration");
-        // console.log(y+" x inside one iteration");
         await changeArray([x,y],p);
-        // console.log("Executed")
-        // console.log(num +"******&&&&&&");num++;
     }
     // console.log(array+" array one iteration");
     console.log(y+" x one iteration$$$$$$$");
@@ -84,6 +80,6 @@ async function merge(a,b,c,d)
        await changeArray([x,y],p);
     //    console.log("Executed")
     }
-    await changeArray([x,y],p);
+    // await changeArray([x,y],p);
 
 }

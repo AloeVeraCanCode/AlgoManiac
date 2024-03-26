@@ -3,20 +3,26 @@ import '../../CSS/Sorting/BarContainer.css';
 import { motion } from "framer-motion"
 
 export default function BarContainer(props) {
-    console.log(props.upperarray+"*up")
-    console.log(props.lowerarray+"*low")
     const h=300;
     var m=0;
+    for(var j=0;j<props.upperarray.length;j++)
+    {
+        m=Math.max(props.lowerarray[j][0],m);
+    }
     for(var j=0;j<props.upperarray.length;j++)
     {
         m=Math.max(props.upperarray[j][0],m);
     }
     // var heightOfBar=props.upperarray.map(elem=>{((elem[0]/m)*h)});
     // console.log(m);
-    var heightMap=new Map();
+    const heightMap=new Map();
+    for(var j=0;j<props.lowerarray.length;j++)
+    {
+        heightMap.set(props.lowerarray[j][0],Math.floor((props.lowerarray[j][0]*h/m)));
+    }
     for(var j=0;j<props.upperarray.length;j++)
     {
-        heightMap.set(props.upperarray[j][0],(props.upperarray[j][0]/m)*h);
+        heightMap.set(props.upperarray[j][0],Math.floor((props.upperarray[j][0]*h/m)));
     }
   return (
     <>

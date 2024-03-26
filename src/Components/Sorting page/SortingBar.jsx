@@ -24,8 +24,7 @@ export default function (props) {
         document.getElementById("random").style.cursor = ' pointer';
    }
    const setArray=()=>{
-        var len=6;
-        // Math.floor(Math.random()*20)+2;
+        var len=Math.floor(Math.random()*20)+2;;
         var tarr=[];
         for(let i=0;i<len;i++)
         {
