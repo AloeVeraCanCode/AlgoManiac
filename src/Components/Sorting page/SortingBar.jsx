@@ -4,6 +4,7 @@ import './SortingAlgorithms/Insertion.js';
 import { InsertionSort } from './SortingAlgorithms/Insertion.js';
 import { mergeSort } from './SortingAlgorithms/MergeSort.js';
 import { BubbleSort } from './SortingAlgorithms/BubbleSort.js';
+import { SelectionSort } from './SortingAlgorithms/SelectionSort.js';
 
 export default function (props) {
    const [arr,setArr]=useState([]);
@@ -47,6 +48,8 @@ export default function (props) {
         await mergeSort(props);
         else if(method==='Bubble Sort')
         await BubbleSort(props);
+        else if(method==='Selection Sort')
+        await SelectionSort(props);
         enablePointers()
     }
   return (
