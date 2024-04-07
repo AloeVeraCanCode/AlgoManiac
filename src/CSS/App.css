@@ -40,6 +40,11 @@
   width: 105%;
   max-height: 105%;
 }
+#pathfinding-picture:hover{
+  cursor:pointer;
+  width: 105%;
+  max-height: 105%;
+}
 a{
   object-fit: cover; 
   width: 100%; 

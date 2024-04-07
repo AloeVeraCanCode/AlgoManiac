@@ -3,7 +3,7 @@ import '../../CSS/App.css';
 import { IoMdSearch } from "react-icons/io";
 import logo from '../../algomaniac.png';
 import sorting from'../../images/sorting.png';
-
+import pathfinding from'../../images/pathfinding.png';
 
 function FrontPage() {
     return (
@@ -20,6 +20,7 @@ function FrontPage() {
             <div id="flex-algorithm-container"style={{backgroundColor:'#486581'}}>
             <div id="algorithm-container">
               <a href="/sorting"><img src={sorting} id="sorting-picture"  alt="logo"></img></a>
+              <a href="/pathfinding"><img src={pathfinding} id="pathfinding-picture"  alt="logo"></img></a>
             </div>
             </div>
         </div>
