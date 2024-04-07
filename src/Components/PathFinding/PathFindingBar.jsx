@@ -38,7 +38,7 @@ export default function (props) {
      <div className="sort-bar">
        <h3>Sorting</h3>
        <div className="inside-sort-bar">
-         <button type="submit" href="/">Home</button>
+         <a href="/"><button type="submit" href="/">Home</button></a>
          <button href="/" id="random" onClick={setArray}>Randomize</button>
          <select name="Merge Sort" id="sortingMethods">
              <option value="">Insertion Sort</option>
