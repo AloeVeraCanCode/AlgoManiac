@@ -1,0 +1,38 @@
+.sort-bar{
+    display:flex;
+    align-items: center;
+}
+.inside-sort-bar{
+    display:flex;
+    align-items:center;
+}
+.find-path-button{
+    -webkit-text-fill-color: aqua;
+    text-align: center;
+    vertical-align: middle;
+    height:35px;
+    width: auto;
+    margin-left:auto;
+    background-color:green;
+    border-radius: 10px;
+    padding:0px;
+}
+button {
+    background: unset ;
+    border: unset !important;
+    outline: unset !important; 
+    padding:19px;
+}
+select{
+    background: unset !important;
+    border: unset !important;
+    outline: unset !important; 
+    padding:19px;
+}
+
+*{
+    font-size: 20px;
+}
+.sort-bar *:hover{
+    cursor:pointer;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../CSS/Sorting/SortingBar.css';
+import '../../CSS/PathFinding/PathFindingBar.css';
 export default function (props) {
     const [arr,setArr]=useState([]);
     function disablePointers()
@@ -40,14 +40,12 @@ export default function (props) {
        <div className="inside-sort-bar">
          <a href="/"><button type="submit" href="/">Home</button></a>
          <button href="/" id="random" onClick={setArray}>Randomize</button>
-         <select name="Merge Sort" id="sortingMethods">
-             <option value="">Insertion Sort</option>
-             <option value="">Merge Sort</option>
-             <option value="">Bubble Sort</option>
-             <option value="">Selection Sort</option>
+         <select name="DFS" id="sortingMethods">
+             <option value="">DFS</option>
+             <option value="">BFS</option>
          </select>
        </div>
-       <button className="sort-button"  id='sortBtn' onClick={sort}>Sort</button>
+       <button className="find-path-button"  id='findPathBtn' onClick={sort}>Find Path</button>
      </div>
    );
 }
