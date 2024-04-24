@@ -2,9 +2,28 @@ import React, { useState,useContext } from 'react';
 import '../../CSS/PathFinding/PathFindingBar.css';
 import callDfs from './PathFinding Algorithms/Dfs.jsx';
 import {Context,  GridContext } from '../../Pages/PathFinding/GridContext.jsx';
+
 export default function (props) {
     const [arr,setArr]=useState([]);
-    const grid=useContext(Context);
+    const grid=props.grid;
+    async function wait(t)
+    {
+      return(new Promise(resolve=>setTimeout(resolve,t)));
+    }
+    async function animate(populate,setGrid)
+    {
+      
+      for(let j=0;j<populate.length;j++){
+        let z=Array.from(grid);
+        console.log(populate[j][0]+" "+populate[j][1]);
+        z[populate[j][0]][populate[j][1]].isAnimate="id2";
+        setGrid(z);
+        console.log("hehe");
+        console.log(z);
+        await wait(50);
+        
+      };
+    }
     function disablePointers()
     {
          document.getElementById("findPathBtn").disabled = true;
@@ -39,9 +58,14 @@ export default function (props) {
       var method=selection.options[selection.selectedIndex].text;
       disablePointers();
       if(method==='DFS')    
-      await callDfs(document,grid.grid,grid.setGrid);
+      {
+        var [traversedPath,ActualPath]=await callDfs(grid,props.endPoints);
+        console.log(traversedPath)
+        await animate(traversedPath,props.setGrid);
+        
+        console.log(grid);
+      }
       enablePointers(); 
-      
      };
    return (
      <div className="sort-bar">

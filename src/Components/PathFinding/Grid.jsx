@@ -4,7 +4,7 @@ import '../../CSS/PathFinding/grid.css';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import Node from './Node';
 let rend=0,sx=0,sy=0,ex=0,ey=0,z=[];
-function initialize(setGrid)
+function initialize(setGrid,end,setEnd)
 {
     for(let i=0;i<25;i++)
     {
@@ -21,7 +21,8 @@ function initialize(setGrid)
           isShortestPath:false,
           isStart:false,
           isEnd:false,
-          color:"white"
+          color:"white",
+          isAnimate:"nothing"
       });
       }
       z.push(y);
@@ -36,17 +37,24 @@ function initialize(setGrid)
   z[ex][ey].isEnd=true;
   
     setGrid(z);
-    console.log(z);
+    setEnd([[sx,sy],[ex,ey]]);
 }
-export default function Grid(){
+async function animate(populate,setGrid)
+{
+  populate.map((e)=>{
+    z[e[0]][e[1]].isAnimate="id2";
+  });
+  setGrid(z);
+}
+export default function Grid(props){
   const [pressed,setPressed]=React.useState(false);
   const [pressedStart,setPressedStart]=React.useState(false);
   const [pressedEnd,setPressedEnd]=React.useState(false);
-  const [grid,setGrid]=useState([]);
   const [start,setStart]=React.useState(false)
   const [end,setEnd]=React.useState(false)
+  let grid=props.grid;let setGrid=props.setGrid;
   if(!rend){
-    initialize(setGrid);
+    initialize(setGrid,props.endPoints,props.setEndPoints);
   }
   rend++;console.log(rend);
   let pos=false;
@@ -124,7 +132,7 @@ export default function Grid(){
       grid.map((row,i)=>{
       return(  <tr>
        { row.map((elem,j)=>{
-          return(<Node row={i} col={j} color={elem.color} isWall={elem.isWall} isStart={elem.isStart} isEnd={elem.isEnd} clicked={clicked} press={press} mouseOut={mouseOut} release={release}  toggleWallColor={toggleWallColor}></Node>)
+          return(<Node isAnimate={elem.isAnimate} row={i} col={j} color={elem.color} isWall={elem.isWall} isStart={elem.isStart} isEnd={elem.isEnd} clicked={clicked} press={press} mouseOut={mouseOut} release={release}  toggleWallColor={toggleWallColor}></Node>)
         })
        }
         </tr>)

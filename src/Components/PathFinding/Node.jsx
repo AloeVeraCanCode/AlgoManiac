@@ -1,6 +1,7 @@
 import React,{useContext, useState} from 'react'
 import destlogo from '../../images/destination.png';
 import '../../CSS/PathFinding/grid.css';
+import '../../CSS/PathFinding/Node.css';
 import homeLogo from '../../images/homepage-green-icon.png'
 import { Context } from '../../Pages/PathFinding/GridContext';
 export default function Node(props) {
@@ -82,8 +83,10 @@ export default function Node(props) {
     // console.log("Node")
     // console.log(grid);
     let row=props.row,col=props.col;
+    // console.log(props.isAnimate)
   return (
     <td style={{lineHeight:0,height:25,width:25,border:'1px solid gray',padding:0,backgroundColor:props.color,draggable:'false'} }
+    className={props.isAnimate}
         onClick={(event)=>props.clicked(event,row,col)} onMouseDown={(event)=>props.press(event,row,col)} onMouseUp={(event)=>props.release(event,row,col)} onMouseEnter={(event)=>props.toggleWallColor(event,row,col)}onMouseOut={(event)=>props.mouseOut(event,row,col)}>{props.isEnd && <img src={destlogo} style={{objectFit:'cover', width: '100%',  maxHeight: '100%', display:'block'}}></img>}{props.isStart && <img src={homeLogo} style={{objectFit:'cover', width: '100%',  maxHeight: '100%',display:'block'}}></img>}</td>
   )
 }
