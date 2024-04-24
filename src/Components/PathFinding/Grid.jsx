@@ -1,60 +1,136 @@
-import React from 'react'
+import React,{useContext, useState} from 'react'
 import destlogo from '../../images/destination.png';
 import '../../CSS/PathFinding/grid.css';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-
 import Node from './Node';
-let rend=0,sx=0,sy=0,ex=0,ey=0;
-export default function Grid(){
-  const [pressed,setPressed]=React.useState(false);
-  const [pressedStart,setPressedStart]=React.useState(false);
-  const [pressedEnd,setPressedEnd]=React.useState(false);
-  let grid=[];
-  if(!rend){
+let rend=0,sx=0,sy=0,ex=0,ey=0,z=[];
+function initialize(setGrid)
+{
+    for(let i=0;i<25;i++)
+    {
+      let y=[]
+      for(let j=0;j<40;j++)
+      {
+          y.push({
+          value:1,
+          row:i,
+          col:j,
+          isVisited:false,
+          isShortestPath:false,
+          isWall:false,
+          isShortestPath:false,
+          isStart:false,
+          isEnd:false,
+          color:"white"
+      });
+      }
+      z.push(y);
+  }
+  
   sx=Math.floor(Math.random() * 25);
   sy=Math.floor(Math.random() * 40);
   ex=Math.floor(Math.random() * 25);
   ey=Math.floor(Math.random() * 40);
   console.log(sx+" "+sy)
+  z[sx][sy].isStart=true;
+  z[ex][ey].isEnd=true;
+  
+    setGrid(z);
+    console.log(z);
+}
+export default function Grid(){
+  const [pressed,setPressed]=React.useState(false);
+  const [pressedStart,setPressedStart]=React.useState(false);
+  const [pressedEnd,setPressedEnd]=React.useState(false);
+  const [grid,setGrid]=useState([]);
+  const [start,setStart]=React.useState(false)
+  const [end,setEnd]=React.useState(false)
+  if(!rend){
+    initialize(setGrid);
   }
-  rend++;console.log(rend)
+  rend++;console.log(rend);
   let pos=false;
-  // for(let i=0;i<25;i++)
-  // {
-  //   let x=[]
-  //   for(let j=0;j<40;j++)
-  //   {
-  //       const [wall,setWall]=React.useState("white")
-  //       x.push([wall,setWall,'free']);
-  //   }
-  //   grid.push(x);
-  // }
+    const clicked=(event,row,col)=>{
+      // if(start||end)return;
+      console.log("["+row+","+col+"]");
+      let x=Array.from(z);
+      console.log("Clicked");
+      setPressedEnd(false);
+      setPressedStart(false);
+        setPressed(false);
+        if(x[row][col].color=="white")x[row][col].color='black';else x[row][col].color='white';
+        setGrid(x);
+    } 
+     const toggleWallColor=(event,row,col)=>{
+      let x=Array.from(z);
+        if(!pressed)return;
+        console.log("Enter");
+        if(pressedStart)
+        {
+          console.log("Here1")
+      console.log(x);
+          x[row][col].isStart=true;setGrid(x);return;
+        }
+        if(pressedEnd)
+        {
+          console.log("Here2")
+      console.log(x);
+      console.log("["+row+" "+col+"]")
+          x[row][col].isEnd=true;setGrid(x);return;
+        }
+        console.log("Here")
+      console.log(x);
+
+      console.log(x[row][col].color);
+        // console.log("Clicked"+wall)
+        if(x[row][col].color=="white")x[row][col].color='black';else x[row][col].color='white';
+        // console.log("Clicked"+wall);
+        setGrid(x);
+     }
+    const press=(event,row,col)=>{
+      let x=Array.from(z);
+      console.log("Pressed");
+      console.log("["+row+","+col+"]");
+      event.preventDefault();
+        console.log("Pressed"+start);
+        if(x[row][col].isStart){ setPressedStart(true);}
+        else if(x[row][col].isEnd)
+        {
+          setPressedEnd(true);
+        }
+        setPressed(true);
+        setGrid(x);
+    }
+    const release=(event,row,col)=>{
+      let x=Array.from(z);
+        console.log("Released");
+        if( pressed&& pressedStart){setStart(true);console.log("Ya!!!!!!");x[row][col].isStart=true;setGrid(x);}
+        else if( pressed&& pressedEnd){setEnd(true);console.log("Ya!!!!!!");x[row][col].isEnd=true;setGrid(x);}
+         setPressedEnd(false);
+         setPressedStart(false);
+         setPressed(false);
+    }
+    const mouseOut=(event,row,col)=>{
+      let x=Array.from(z);
+      console.log("Out");
+      if( pressed&& pressedStart){x[row][col].isStart=false;console.log("Ya@@@@");}
+      if( pressed&& pressedEnd){x[row][col].isEnd=false;console.log("Ya@@@@");}
+      
+    }
   return (
     <div className='grid'>
     <table style={{borderCollapse: 'collapse',userSelect:'none'}}>
-    {(()=>{
-    let z=[]  
-    for(let i=0;i<25;i++)
     {
-      z.push(
-        <tr>
-        {
-          (()=>{
-            let xy=[];
-            for(let j=0;j<40;j++){console.log("Hain Hain")
-              xy.push(<Node  start={(sx==i)&&(sy==j)?true:false} end={(ex==i)&&(ey==j)?true:false} sx={sx} sy={sy} pressedEnd={pressedEnd} setPressedEnd={setPressedEnd} pressed={pressed} setPressed={setPressed} pressedStart={pressedStart} setPressedStart={setPressedStart} status={'free'} row={i} column={j}></Node>);
-            }
-            return(xy);
-          })()
-        }
-      </tr>
-
-      )
+      grid.map((row,i)=>{
+      return(  <tr>
+       { row.map((elem,j)=>{
+          return(<Node row={i} col={j} color={elem.color} isWall={elem.isWall} isStart={elem.isStart} isEnd={elem.isEnd} clicked={clicked} press={press} mouseOut={mouseOut} release={release}  toggleWallColor={toggleWallColor}></Node>)
+        })
+       }
+        </tr>)
+      })
     }
-    return(z)
-      })()
-    }
-       </table>
+    </table>
     </div>
   )
 }

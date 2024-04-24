@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import '../../CSS/PathFinding/PathFindingBar.css';
+import callDfs from './PathFinding Algorithms/Dfs.jsx';
+import {Context,  GridContext } from '../../Pages/PathFinding/GridContext.jsx';
 export default function (props) {
     const [arr,setArr]=useState([]);
+    const grid=useContext(Context);
     function disablePointers()
     {
-         document.getElementById("sortBtn").disabled = true;
-         document.getElementById("sortBtn").style.cursor = 'wait';
-         document.getElementById("sortingMethods").disabled = true;
-         document.getElementById("sortingMethods").style.cursor = 'wait';
+         document.getElementById("findPathBtn").disabled = true;
+         document.getElementById("findPathBtn").style.cursor = 'wait';
+         document.getElementById("pathFindingMethods").disabled = true;
+         document.getElementById("pathFindingMethods").style.cursor = 'wait';
          document.getElementById("random").disabled = true;
          document.getElementById("random").style.cursor = 'wait';
     }
     function enablePointers()
     {
-         document.getElementById("sortBtn").disabled = false;
-         document.getElementById("sortBtn").style.cursor =' pointer';
-         document.getElementById("sortingMethods").disabled = false;
-         document.getElementById("sortingMethods").style.cursor = ' pointer';
+         document.getElementById("findPathBtn").disabled = false;
+         document.getElementById("findPathBtn").style.cursor =' pointer';
+         document.getElementById("pathFindingMethods").disabled = false;
+         document.getElementById("pathFindingMethods").style.cursor = ' pointer';
          document.getElementById("random").disabled = false;
          document.getElementById("random").style.cursor = ' pointer';
     }
@@ -31,8 +34,14 @@ export default function (props) {
          setArr([tarr,tarr]);
          console.log(tarr);
      };
-     const sort=()=>{
-        return 1;
+     async function findPath(){
+      var selection=document.getElementById('pathFindingMethods');
+      var method=selection.options[selection.selectedIndex].text;
+      disablePointers();
+      if(method==='DFS')    
+      await callDfs(document,grid.grid,grid.setGrid);
+      enablePointers(); 
+      
      };
    return (
      <div className="sort-bar">
@@ -40,12 +49,12 @@ export default function (props) {
        <div className="inside-sort-bar">
          <a href="/"><button type="submit" href="/">Home</button></a>
          <button href="/" id="random" onClick={setArray}>Randomize</button>
-         <select name="DFS" id="sortingMethods">
+         <select name="DFS" id="pathFindingMethods">
              <option value="">DFS</option>
              <option value="">BFS</option>
          </select>
        </div>
-       <button className="find-path-button"  id='findPathBtn' onClick={sort}>Find Path</button>
+       <button className="find-path-button"  id='findPathBtn' onClick={findPath}>Find Path</button>
      </div>
    );
 }

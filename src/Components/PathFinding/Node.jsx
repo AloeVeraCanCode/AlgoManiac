@@ -1,63 +1,89 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import destlogo from '../../images/destination.png';
 import '../../CSS/PathFinding/grid.css';
 import homeLogo from '../../images/homepage-green-icon.png'
-
+import { Context } from '../../Pages/PathFinding/GridContext';
 export default function Node(props) {
-    const [wall,setWall]=React.useState("white")
-    const [start,setStart]=React.useState(props.start)
-    const [end,setEnd]=React.useState(props.end)
-    // console.log("Node"+wall)
-    const clicked=()=>{
-      // if(start||end)return;
-      
-      console.log("Clicked");
-      props.setPressedEnd(false);
-      props.setPressedStart(false);
-        props.setPressed(false);
-        if(wall=="white")setWall("black");else setWall("white");
-    } 
-     const toggleWallColor=()=>{
-        if(!props.pressed)return;
-        console.log("Enter");
-        if(props.pressedStart)
-        {
-           setWall('white');setStart(true);console.log("Ya###");return;
-        }
-        if(props.pressedEnd)
-        {
-           setWall('white');setEnd(true);console.log("Ya###");return;
-        }
-        console.log("Clicked"+wall)
-        if(wall=="white")setWall("black");else setWall("white");
-        console.log("Clicked"+wall)
-     }
-    const press=(event)=>{
-      console.log("Pressed");
-      event.preventDefault();
-        console.log("Pressed"+start);
-        if(start){props.setPressedStart(true);}
-        else if(end)
-        {
-          props.setPressedEnd(true);
-        }
-        props.setPressed(true);
-        // if(wall=="white")setWall("black");else setWall("white");
-    }
-    const release=(event)=>{
-        console.log("Released");
-        if(props.pressed&&props.pressedStart&&start){setStart(true);console.log("Ya!!!!!!");}
-        else if(props.pressed&&props.pressedEnd&&end){setEnd(true);console.log("Ya!!!!!!");}
-        props.setPressedEnd(false);
-        props.setPressedStart(false);
-        props.setPressed(false);
-    }
-    const mouseOut=()=>{
-      console.log("Out");
-      if(props.pressed&&props.pressedStart&&start){setStart(false);console.log("Ya@@@@");}
-      if(props.pressed&&props.pressedEnd&&end){setEnd(false);console.log("Ya@@@@");}
-    }
+    // const [wall,setWall]=React.useState("white")
+    // const [start,setStart]=React.useState(props.start)
+    // const [end,setEnd]=React.useState(props.end)
+    // const grid=useContext(Context);
+    // console.log(props.row+","+props.column)
+    // console.log(grid);
+    // console.log('Inside Node');
+    // let id =`id${props.row}${props.column}`;
+    // console.log(id);
+    // // if(start){
+    // //   let x=grid.grid;
+    // //     x[props.row][props.column]=2;
+    // //     grid.setGrid(x);
+    // // }
+    // // else if(end){
+    // //   let x=grid.grid;
+    // //     x[props.row][props.column]=3;
+    // //     grid.setGrid(x);
+    // // }
+    // const toggleCell=()=>{
+    //     let x=grid.grid;
+    //     x[props.row][props.column]=1-x[props.row][props.column];
+    //     grid.setGrid(x);
+    // }
+    // // console.log("Node"+wall)
+    // const clicked=()=>{
+    //   // if(start||end)return;
+    //   console.log("Clicked");
+    //   props.setPressedEnd(false);
+    //   props.setPressedStart(false);
+    //     props.setPressed(false);
+    //     if(wall=="white")setWall("black");else setWall("white");
+    //     toggleCell();
+    // } 
+    //  const toggleWallColor=()=>{
+    //     if(!props.pressed)return;
+    //     console.log("Enter");
+    //     if(props.pressedStart)
+    //     {
+    //        setWall('white');setStart(true);console.log("Ya###");return;
+    //     }
+    //     if(props.pressedEnd)
+    //     {
+    //        setWall('white');setEnd(true);console.log("Ya###");return;
+    //     }
+    //     console.log("Clicked"+wall)
+    //     if(wall=="white")setWall("black");else setWall("white");
+    //     console.log("Clicked"+wall);
+    //     toggleCell();
+    //  }
+    // const press=(event)=>{
+    //   console.log("Pressed");
+    //   event.preventDefault();
+    //     console.log("Pressed"+start);
+    //     if(start){props.setPressedStart(true);}
+    //     else if(end)
+    //     {
+    //       props.setPressedEnd(true);
+    //     }
+    //     props.setPressed(true);
+    //     // if(wall=="white")setWall("black");else setWall("white");
+    // }
+    // const release=(event)=>{
+    //     console.log("Released");
+    //     if(props.pressed&&props.pressedStart&&start){setStart(true);console.log("Ya!!!!!!");let x=grid.grid;x[props.row][props.column]=2;grid.setGrid(x);}
+    //     else if(props.pressed&&props.pressedEnd&&end){setEnd(true);console.log("Ya!!!!!!");let x=grid.grid;x[props.row][props.column]=3;grid.setGrid(x);}
+    //     props.setPressedEnd(false);
+    //     props.setPressedStart(false);
+    //     props.setPressed(false);
+    // }
+    // const mouseOut=()=>{
+    //   console.log("Out");
+    //   if(props.pressed&&props.pressedStart&&start){setStart(false);console.log("Ya@@@@");}
+    //   if(props.pressed&&props.pressedEnd&&end){setEnd(false);console.log("Ya@@@@");}
+    // }
+    // console.log("Node")
+    // console.log(grid);
+    let row=props.row,col=props.col;
   return (
-    <td style={{lineHeight:0,height:25,width:25,border:'1px solid gray',padding:0,backgroundColor:wall,draggable:'false' }} onClick={clicked} onMouseDown={press} onMouseUp={release} onMouseEnter={toggleWallColor}onMouseOut={mouseOut}>{end && <img src={destlogo} style={{objectFit:'cover', width: '100%',  maxHeight: '100%', display:'block'}}></img>}{start && <img src={homeLogo} style={{objectFit:'cover', width: '100%',  maxHeight: '100%',display:'block'}}></img>}</td>
+    <td style={{lineHeight:0,height:25,width:25,border:'1px solid gray',padding:0,backgroundColor:props.color,draggable:'false'} }
+        onClick={(event)=>props.clicked(event,row,col)} onMouseDown={(event)=>props.press(event,row,col)} onMouseUp={(event)=>props.release(event,row,col)} onMouseEnter={(event)=>props.toggleWallColor(event,row,col)}onMouseOut={(event)=>props.mouseOut(event,row,col)}>{props.isEnd && <img src={destlogo} style={{objectFit:'cover', width: '100%',  maxHeight: '100%', display:'block'}}></img>}{props.isStart && <img src={homeLogo} style={{objectFit:'cover', width: '100%',  maxHeight: '100%',display:'block'}}></img>}</td>
   )
 }
