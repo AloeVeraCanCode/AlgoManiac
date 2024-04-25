@@ -16,7 +16,7 @@ export default function (props) {
     async function animate(populate,setGrid)
     {
       
-      for(let j=0;j<populate.length;j++){
+      for(let j=1;j<populate.length;j++){
         let z=Array.from(grid);
         console.log(populate[j][0]+" "+populate[j][1]);
         z[populate[j][0]][populate[j][1]].isAnimate="id2";

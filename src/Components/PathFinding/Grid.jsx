@@ -39,7 +39,7 @@ function initialize(setGrid,end,setEnd)
   z[ex][ey].isEnd=true;
   
     setGrid(z);
-    setEnd([[sx,sy],[ex,ey]]);
+     setEnd([[sx,sy],[ex,ey]]);
 }
 async function animate(populate,setGrid)
 {
@@ -76,21 +76,21 @@ export default function Grid(props){
         if(!pressed)return;
         console.log("Enter");
         if(pressedStart)
-        {
+        { sx=row;sy=col;
           console.log("Here1")
-      console.log(x);
+          console.log(x);
           x[row][col].isStart=true;setGrid(x);return;
         }
         if(pressedEnd)
-        {
+        { ex=row;ey=col;
           console.log("Here2")
-      console.log(x);
-      console.log("["+row+" "+col+"]")
+          console.log(x);
+          console.log("["+row+" "+col+"]")
           x[row][col].isEnd=true;setGrid(x);return;
         }
         console.log("Here")
       console.log(x);
-
+       props.setEndPoints([[sx,sy],[ex,ey]]);
       console.log(x[row][col].color);
         // console.log("Clicked"+wall)
         if(x[row][col].color=="white")x[row][col].color='black';else x[row][col].color='white';
@@ -114,17 +114,19 @@ export default function Grid(props){
     const release=(event,row,col)=>{
       let x=Array.from(z);
         console.log("Released");
-        if( pressed&& pressedStart){setStart(true);console.log("Ya!!!!!!");x[row][col].isStart=true;setGrid(x);}
-        else if( pressed&& pressedEnd){setEnd(true);console.log("Ya!!!!!!");x[row][col].isEnd=true;setGrid(x);}
+        if( pressed&& pressedStart){setStart(true);console.log("Ya!!!!!!");x[row][col].isStart=true;sx=row;sy=col;setGrid(x);}
+        else if( pressed&& pressedEnd){setEnd(true);console.log("Ya!!!!!!");x[row][col].isEnd=true;ex=row;ey=col;setGrid(x);}
          setPressedEnd(false);
          setPressedStart(false);
          setPressed(false);
+          props.setEndPoints([[sx,sy],[ex,ey]]);
     }
     const mouseOut=(event,row,col)=>{
       let x=Array.from(z);
       console.log("Out");
-      if( pressed&& pressedStart){x[row][col].isStart=false;console.log("Ya@@@@");}
-      if( pressed&& pressedEnd){x[row][col].isEnd=false;console.log("Ya@@@@");}
+      if( pressed&& pressedStart){x[row][col].isStart=false;sx=row;sy=col;console.log("Ya@@@@");}
+      if( pressed&& pressedEnd){x[row][col].isEnd=false;ex=row;ey=col;console.log("Ya@@@@");}
+      setEnd([[sx,sy],[ex,ey]]);
       
     }
   return (
