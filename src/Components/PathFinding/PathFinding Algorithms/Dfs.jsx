@@ -23,8 +23,10 @@ function isValid(vis, row, col)
 function DFS(row, col,vis)
 {
     console.log(grid)
-    var st = [];
+    var st = [];var par=new Map();
     st.push([ row, col ]);
+    par[[row,col]]=[-1,-1,-1];
+    vis[row][col]=true;
     while (st.length!=0) {
         // Pop the top pair
         var curr = st[st.length-1];
@@ -32,8 +34,8 @@ function DFS(row, col,vis)
         var row = curr[0];
         var col = curr[1];
         
-        if (!isValid(vis, row, col))
-            continue;
+        // if (!isValid(vis, row, col))
+        //     continue;
         console.log([row,col]);
         // grid[row][col]=2;
         ret.push([row,col]);
@@ -41,7 +43,7 @@ function DFS(row, col,vis)
         // console.log("HERERERERERE"+grid)
         // Mark the current
         // cell as visited
-        vis[row][col] = true;
+        
         // Print the element at
         // the current top cell
         // document.write( grid[row][col] + " ");
@@ -50,11 +52,29 @@ function DFS(row, col,vis)
         for (var i = 0; i < 4; i++) {
             var adjx = row + dRow[i];
             var adjy = col + dCol[i];
+            if (isValid(vis, adjx, adjy)){
+            vis[adjx][adjy] = true;
             st.push([ adjx, adjy ]);
+            if(i==0)
+            par[[adjx,adjy]]=[row,col,"la"];
+            else if(i==1)
+            par[[adjx,adjy]]=[row,col,"da"];
+            else if(i==2)
+            par[[adjx,adjy]]=[row,col,"ra"];
+            else if(i==3)
+            par[[adjx,adjy]]=[row,col,"ua"];
+            }
         }
     }
-    console.log(ret);
-    return([ret,[]]);
+    var sr=[],cur=[endPoints[1][0],endPoints[1][1]];
+    console.log(par);    console.log(cur);console.log(par[[cur[0],cur[1]]]);
+    while(par[[cur[0],cur[1]]][0]!=-1)
+    {
+        sr.push(par[[cur[0],cur[1]]]);
+        cur=[par[[cur[0],cur[1]]][0],par[[cur[0],cur[1]]][1]];
+    }
+    console.log(sr);
+    return([ret,sr]);
 }
 export default async function callDfs(g,e)
 {

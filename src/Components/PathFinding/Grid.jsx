@@ -22,7 +22,9 @@ function initialize(setGrid,end,setEnd)
           isStart:false,
           isEnd:false,
           color:"white",
-          isAnimate:"nothing"
+          isAnimate:"nothing",
+          symbol:"none",
+          icon:false
       });
       }
       z.push(y);
@@ -132,7 +134,7 @@ export default function Grid(props){
       grid.map((row,i)=>{
       return(  <tr>
        { row.map((elem,j)=>{
-          return(<Node isAnimate={elem.isAnimate} row={i} col={j} color={elem.color} isWall={elem.isWall} isStart={elem.isStart} isEnd={elem.isEnd} clicked={clicked} press={press} mouseOut={mouseOut} release={release}  toggleWallColor={toggleWallColor}></Node>)
+          return(<Node icon={elem.icon} symbol={elem.symbol} isAnimate={elem.isAnimate} row={i} col={j} color={elem.color} isWall={elem.isWall} isStart={elem.isStart} isEnd={elem.isEnd} clicked={clicked} press={press} mouseOut={mouseOut} release={release}  toggleWallColor={toggleWallColor}></Node>)
         })
        }
         </tr>)

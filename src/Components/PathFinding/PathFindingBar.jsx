@@ -2,7 +2,10 @@ import React, { useState,useContext } from 'react';
 import '../../CSS/PathFinding/PathFindingBar.css';
 import callDfs from './PathFinding Algorithms/Dfs.jsx';
 import {Context,  GridContext } from '../../Pages/PathFinding/GridContext.jsx';
-
+import da from '../../images/down arrow.png';
+import la from '../../images/left arrow.png';
+import ra from '../../images/right arrow.png';
+import ua from '../../images/up arrow.png';
 export default function (props) {
     const [arr,setArr]=useState([]);
     const grid=props.grid;
@@ -17,6 +20,21 @@ export default function (props) {
         let z=Array.from(grid);
         console.log(populate[j][0]+" "+populate[j][1]);
         z[populate[j][0]][populate[j][1]].isAnimate="id2";
+        setGrid(z);
+        console.log("hehe");
+        console.log(z);
+        await wait(50);
+        
+      };
+    }
+    async function showPath(populate,setGrid)
+    {
+      populate.reverse();
+      for(let j=1;j<populate.length;j++){
+        let z=Array.from(grid);
+        console.log(populate[j][0]+" "+populate[j][1]);
+        z[populate[j][0]][populate[j][1]].symbol=populate[j][2];
+        z[populate[j][0]][populate[j][1]].icon=true;
         setGrid(z);
         console.log("hehe");
         console.log(z);
@@ -62,7 +80,7 @@ export default function (props) {
         var [traversedPath,ActualPath]=await callDfs(grid,props.endPoints);
         console.log(traversedPath)
         await animate(traversedPath,props.setGrid);
-        
+        await showPath(ActualPath,props.setGrid);
         console.log(grid);
       }
       enablePointers(); 
