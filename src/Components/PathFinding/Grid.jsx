@@ -12,13 +12,8 @@ function initialize(setGrid,end,setEnd)
       for(let j=0;j<40;j++)
       {
           y.push({
-          value:1,
           row:i,
           col:j,
-          isVisited:false,
-          isShortestPath:false,
-          isWall:false,
-          isShortestPath:false,
           isStart:false,
           isEnd:false,
           color:"white",
@@ -55,11 +50,14 @@ export default function Grid(props){
   const [start,setStart]=React.useState(false)
   const [end,setEnd]=React.useState(false)
   let grid=props.grid;let setGrid=props.setGrid;
+  z=grid;
+  // z=grid;
   if(!rend){
     initialize(setGrid,props.endPoints,props.setEndPoints);
   }
   rend++;console.log(rend);
   let pos=false;
+
     const clicked=(event,row,col)=>{
       // if(start||end)return;
       console.log("["+row+","+col+"]");

@@ -7,6 +7,47 @@ import da from '../../images/down arrow.png';
 import la from '../../images/left arrow.png';
 import ra from '../../images/right arrow.png';
 import ua from '../../images/up arrow.png';
+let z=[],sx=[],sy=[],ex=[],ey=[];
+function initialize(setGrid,end,setEnd)
+{
+  z=[];
+    for(let i=0;i<25;i++)
+    {
+      let y=[]
+      for(let j=0;j<40;j++)
+      {
+          y.push({
+          row:i,
+          col:j,
+          isStart:false,
+          isEnd:false,
+          color:"white",
+          isAnimate:"nothing",
+          symbol:"none",
+          icon:false
+      });
+      }
+      z.push(y);
+  }
+  
+  sx=end[0][0];
+  sy=end[0][1];
+  ex=end[1][0];
+  ey=end[1][1];
+  console.log(sx+" "+sy)
+  z[sx][sy].isStart=true;
+  z[ex][ey].isEnd=true;
+  
+  setGrid(z);
+  setEnd([[sx,sy],[ex,ey]]);
+}
+async function animate(populate,setGrid)
+{
+  populate.map((e)=>{
+    z[e[0]][e[1]].isAnimate="id2";
+  });
+  setGrid(z);
+}
 export default function (props) {
     const [arr,setArr]=useState([]);
     const grid=props.grid;
@@ -112,12 +153,18 @@ export default function (props) {
       }
       enablePointers(); 
      };
+     function clear()
+     {
+        console.log("hainhain")
+        initialize(props.setGrid,props.endPoints,props.setEndPoints)
+     }
    return (
      <div className="sort-bar">
        <h3>Sorting</h3>
        <div className="inside-sort-bar">
          <a href="/"><button type="submit" href="/">Home</button></a>
          <button href="/" id="random" onClick={setArray}>Randomize</button>
+         <button  id="clear" onClick={clear}>Clear</button>
          <select name="DFS" id="pathFindingMethods">
              <option value="">BFS</option>
              <option value="">DFS</option>
