@@ -4,7 +4,6 @@ var COL = 40;
 var grid=[],ret=[],endPoints=[];
 var dRow = [0, 1, 0, -1];
 var dCol = [ -1, 0, 1, 0];
-var vis = Array.from(Array(ROW), ()=> Array(COL).fill(false));
 function isValid(vis, row, col)
 {
 	// If cell lies out of bounds
@@ -23,6 +22,8 @@ function isValid(vis, row, col)
 // Function to perform the BFS traversal
 function BFS( row, col)
 {
+    var vis = Array.from(Array(ROW), ()=> Array(COL).fill(false));
+    ret=[];
 	var par=new Map();
 	var q = [];
 

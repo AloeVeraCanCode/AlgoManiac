@@ -29,7 +29,6 @@ function initialize(setGrid,end,setEnd)
   sy=Math.floor(Math.random() * 40);
   ex=Math.floor(Math.random() * 25);
   ey=Math.floor(Math.random() * 40);
-  console.log(sx+" "+sy)
   z[sx][sy].isStart=true;
   z[ex][ey].isEnd=true;
   
@@ -55,14 +54,12 @@ export default function Grid(props){
   if(!rend){
     initialize(setGrid,props.endPoints,props.setEndPoints);
   }
-  rend++;console.log(rend);
+  rend++;
   let pos=false;
 
     const clicked=(event,row,col)=>{
-      // if(start||end)return;
-      console.log("["+row+","+col+"]");
       let x=Array.from(z);
-      console.log("Clicked");
+      
       setPressedEnd(false);
       setPressedStart(false);
         setPressed(false);
@@ -72,35 +69,21 @@ export default function Grid(props){
      const toggleWallColor=(event,row,col)=>{
       let x=Array.from(z);
         if(!pressed)return;
-        console.log("Enter");
         if(pressedStart)
         { sx=row;sy=col;
-          console.log("Here1")
-          console.log(x);
           x[row][col].isStart=true;setGrid(x);return;
         }
         if(pressedEnd)
         { ex=row;ey=col;
-          console.log("Here2")
-          console.log(x);
-          console.log("["+row+" "+col+"]")
           x[row][col].isEnd=true;setGrid(x);return;
         }
-        console.log("Here")
-      console.log(x);
        props.setEndPoints([[sx,sy],[ex,ey]]);
-      console.log(x[row][col].color);
-        // console.log("Clicked"+wall)
         if(x[row][col].color=="white")x[row][col].color='black';else x[row][col].color='white';
-        // console.log("Clicked"+wall);
         setGrid(x);
      }
     const press=(event,row,col)=>{
-      let x=Array.from(z);
-      console.log("Pressed");
-      console.log("["+row+","+col+"]");
-      event.preventDefault();
-        console.log("Pressed"+start);
+        let x=Array.from(z);
+        event.preventDefault();
         if(x[row][col].isStart){ setPressedStart(true);}
         else if(x[row][col].isEnd)
         {
@@ -111,9 +94,8 @@ export default function Grid(props){
     }
     const release=(event,row,col)=>{
       let x=Array.from(z);
-        console.log("Released");
-        if( pressed&& pressedStart){setStart(true);console.log("Ya!!!!!!");x[row][col].isStart=true;sx=row;sy=col;setGrid(x);}
-        else if( pressed&& pressedEnd){setEnd(true);console.log("Ya!!!!!!");x[row][col].isEnd=true;ex=row;ey=col;setGrid(x);}
+        if( pressed&& pressedStart){setStart(true);x[row][col].isStart=true;sx=row;sy=col;setGrid(x);}
+        else if( pressed&& pressedEnd){setEnd(true);x[row][col].isEnd=true;ex=row;ey=col;setGrid(x);}
          setPressedEnd(false);
          setPressedStart(false);
          setPressed(false);
@@ -121,9 +103,8 @@ export default function Grid(props){
     }
     const mouseOut=(event,row,col)=>{
       let x=Array.from(z);
-      console.log("Out");
-      if( pressed&& pressedStart){x[row][col].isStart=false;sx=row;sy=col;console.log("Ya@@@@");}
-      if( pressed&& pressedEnd){x[row][col].isEnd=false;ex=row;ey=col;console.log("Ya@@@@");}
+      if( pressed&& pressedStart){x[row][col].isStart=false;sx=row;sy=col;}
+      if( pressed&& pressedEnd){x[row][col].isEnd=false;ex=row;ey=col;}
       setEnd([[sx,sy],[ex,ey]]);
       
     }
