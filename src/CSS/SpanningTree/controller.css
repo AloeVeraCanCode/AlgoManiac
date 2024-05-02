@@ -1,0 +1,20 @@
+.controller{
+    height:650px;
+    background-color: grey;
+    width:220px;
+    margin:5px;
+    margin-top:0px;
+}
+.NodeBtn{
+    background-color: green;
+    width:100%;
+    color : white;
+    margin-top: 5px;
+    border-radius: 10%
+}
+.edge{
+    margin:5px;
+    background-color: rgb(231, 213, 213);
+    text-align: center;
+}
+

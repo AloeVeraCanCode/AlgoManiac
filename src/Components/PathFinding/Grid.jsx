@@ -58,13 +58,13 @@ export default function Grid(props){
   let pos=false;
 
     const clicked=(event,row,col)=>{
-      let x=Array.from(z);
-      
-      setPressedEnd(false);
-      setPressedStart(false);
-        setPressed(false);
-        if(x[row][col].color=="white")x[row][col].color='black';else x[row][col].color='white';
-        setGrid(x);
+    let x=Array.from(z);
+    
+    setPressedEnd(false);
+    setPressedStart(false);
+    setPressed(false);
+    if(x[row][col].color=="white")x[row][col].color='black';else x[row][col].color='white';
+    setGrid(x);
     } 
      const toggleWallColor=(event,row,col)=>{
       let x=Array.from(z);

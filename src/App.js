@@ -6,7 +6,7 @@ import FrontPage from './Pages/FrontPage/FrontPage';
 import SortingPage from './Pages/Sorting/SortingPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PathFindingPage from './Pages/PathFinding/PathFindingPage';
-
+import SpanningTreePage from './Pages/SpanningTree/SpanningTreePage';
 function App() {
 
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route path="/" element={<FrontPage />}/>
         <Route path="/sorting" element={<SortingPage />} />
         <Route path="/pathfinding" element={<PathFindingPage />} />
+        <Route path="/spanning" element={<SpanningTreePage />} />
       </Routes>
     </BrowserRouter>
   );

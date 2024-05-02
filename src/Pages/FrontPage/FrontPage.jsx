@@ -4,7 +4,7 @@ import { IoMdSearch } from "react-icons/io";
 import logo from '../../algomaniac.png';
 import sorting from'../../images/sorting.png';
 import pathfinding from'../../images/pathfinding.png';
-
+import spanningTree from '../../images/spanning.png';
 function FrontPage() {
     return (
         <div>
@@ -21,6 +21,7 @@ function FrontPage() {
             <div id="algorithm-container">
               <a href="/sorting"><img src={sorting} id="sorting-picture"  alt="logo"></img></a>
               <a href="/pathfinding"><img src={pathfinding} id="pathfinding-picture"  alt="logo"></img></a>
+              <a href="/spanning"><img src={spanningTree} id="spanning-picture"  alt="logo"></img></a>
             </div>
             </div>
         </div>
