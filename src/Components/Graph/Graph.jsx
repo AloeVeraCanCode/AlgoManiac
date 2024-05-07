@@ -4,6 +4,22 @@ import Controller from './Controller'
 import '../../CSS/SpanningTree/graph.css'
 import { Prim } from '../SpanningTree/Prim';
 var node=0;
+function disablePointers()
+    {
+        
+         document.getElementById("findSpanningTree").disabled = true;
+         document.getElementById("findSpanningTree").style.cursor = 'wait';
+         document.getElementById("clear").disabled = true;
+         document.getElementById("clear").style.cursor = 'wait';
+    }
+    function enablePointers()
+    {
+        
+         document.getElementById("findSpanningTree").disabled = false;
+         document.getElementById("findSpanningTree").style.cursor = ' pointer';
+         document.getElementById("clear").disabled = false;
+         document.getElementById("clear").style.cursor='pointer';
+    }
 async function wait(t)
 {
   return(new Promise(resolve=>setTimeout(resolve,t)));
@@ -19,14 +35,15 @@ async function animate(g,setGraph)
   };
 }
 async function subanimate(g,setGraph,sr){
-  sr(false);
+  sr(false);disablePointers();
   await animate(g,setGraph);
+  enablePointers();
 }
 export default function Graph(props) {
  console.log("Graph")
  
   const [id,setId]=useState(1);
-  const [graph,setGraph]=useState({'nodes':{1:{x:0,y:0,color:'red'}},'edges':{1:[[1,10,'green']]}});
+  const [graph,setGraph]=useState({'nodes':{1:{x:-30,y:-30,color:'red'}},'edges':{1:[[1,10,'green']]}});
   const [pressedNode,setPressedNode]=useState(false);
   console.log(graph);
   const clickId=(i)=>{
@@ -66,11 +83,15 @@ export default function Graph(props) {
   React.useEffect(()=>{
     console.log("Here")
     if(props.run){
-    
     var newGraph=Prim(graph,setGraph);
     subanimate(newGraph,setGraph,props.setRun);
     // console.log()
-     
+    }
+    if(props.clear)
+    {
+      node=0;
+      props.setClear(false);
+      setGraph({'nodes':{1:{x:-30,y:-30,color:'red'}},'edges':{1:[[1,10,'green']]}});
     }
   })
   return (

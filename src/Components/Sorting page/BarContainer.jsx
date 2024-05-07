@@ -1,6 +1,5 @@
 import React from 'react'
 import '../../CSS/Sorting/BarContainer.css';
-import { motion } from "framer-motion"
 
 export default function BarContainer(props) {
     const h=300;

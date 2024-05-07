@@ -160,7 +160,7 @@ export default function (props) {
      }
    return (
      <div className="sort-bar">
-       <h3>Sorting</h3>
+       <h3>Path Finding</h3>
        <div className="inside-sort-bar">
          <a href="/"><button type="submit" href="/">Home</button></a>
          <button href="/" id="random" onClick={setArray}>Randomize</button>
