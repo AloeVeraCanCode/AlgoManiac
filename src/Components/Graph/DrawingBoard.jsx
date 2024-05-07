@@ -9,20 +9,50 @@ export default function DrawingBoard(props) {
     height: 650,
   });
   var layer = new Konva.Layer();
-  const drawCircle=(num,a,b)=>{
+  const drawEdge=(a,b,c,d,cost,col)=>{
+    if(a>c)
+    {
+      var t=a;a=c;c=t;
+      t=b;b=d;d=t;
+    }
+    var line = new Konva.Line({
+      points: [a,b,c,d],
+      stroke: col,
+      strokeWidth: 2,
+      lineCap: 'round',
+      lineJoin: 'round',
+    });
+    var index = line.zIndex();
+    var textpath = new Konva.TextPath({
+      x:(c-a)/2,
+      y:(d-b)/2,
+      fill: '#333',
+      fontSize: 16,
+      fontFamily: 'Arial',
+      text: cost,
+      data: `M ${a},${b} L${c},${d} `,
+    });
+
+    layer.add(textpath);
+
+// set index
+    
+    layer.add(line);
+  }
+  const drawCircle=(num,a,b,col)=>{
     var c = new Konva.Circle({
     x: a,
     y: b,
     
     radius: 25,
-    fill: 'red',
+    fill: col,
     stroke: 'black',
     strokeWidth: 4,
     draggable:true
   });
   var text = new Konva.TextPath({
     x: a,
-    y: b,
+    y: b+17,
     fill: '#000',
     textBaseline: 'hanging',
     text:num,
@@ -50,13 +80,18 @@ export default function DrawingBoard(props) {
   
     for (const [key, value] of Object.entries(props.graph['nodes'])) {
     console.log(value);
-    drawCircle(key,value['x'],value['y']);
+    drawCircle(key,value['x'],value['y'],value['color']);
+    }
+    for(const [key,edges] of Object.entries(props.graph['edges'])){
+      console.log(edges);
+      for(const edge of edges)
+      {
+        console.log(edge);
+        drawEdge(props.graph['nodes'][key]['x'],props.graph['nodes'][key]['y'],props.graph['nodes'][edge[0]]['x'],props.graph['nodes'][edge[0]]['y'],edge[1],edge[2])
+      }
     }
   stage.add(layer);
-  // layer.add(circle)
-  // stage.add(layer);
   }
-  // 
 )
 
   return (

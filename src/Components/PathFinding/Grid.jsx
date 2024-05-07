@@ -32,8 +32,8 @@ function initialize(setGrid,end,setEnd)
   z[sx][sy].isStart=true;
   z[ex][ey].isEnd=true;
   
-    setGrid(z);
-     setEnd([[sx,sy],[ex,ey]]);
+  setGrid(z);
+  setEnd([[sx,sy],[ex,ey]]);
 }
 async function animate(populate,setGrid)
 {
@@ -50,7 +50,6 @@ export default function Grid(props){
   const [end,setEnd]=React.useState(false)
   let grid=props.grid;let setGrid=props.setGrid;
   z=grid;
-  // z=grid;
   if(!rend){
     initialize(setGrid,props.endPoints,props.setEndPoints);
   }
@@ -96,10 +95,10 @@ export default function Grid(props){
       let x=Array.from(z);
         if( pressed&& pressedStart){setStart(true);x[row][col].isStart=true;sx=row;sy=col;setGrid(x);}
         else if( pressed&& pressedEnd){setEnd(true);x[row][col].isEnd=true;ex=row;ey=col;setGrid(x);}
-         setPressedEnd(false);
-         setPressedStart(false);
-         setPressed(false);
-          props.setEndPoints([[sx,sy],[ex,ey]]);
+        setPressedEnd(false);
+        setPressedStart(false);
+        setPressed(false);
+        props.setEndPoints([[sx,sy],[ex,ey]]);
     }
     const mouseOut=(event,row,col)=>{
       let x=Array.from(z);

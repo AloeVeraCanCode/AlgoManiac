@@ -13,11 +13,9 @@ function isValid(vis, row, col)
         return false;
     if (vis[row][col])
         return false;
- 
     // Otherwise, it can be visited
     return true;
 }
- 
 // Function to perform DFS
 // Traversal on the matrix grid[]
 function DFS(row, col,vis)
@@ -34,13 +32,11 @@ function DFS(row, col,vis)
         var row = curr[0];
         var col = curr[1];
         
-        // if (!isValid(vis, row, col))
-        //     continue;
         console.log([row,col]);
         // grid[row][col]=2;
         ret.push([row,col]);
         if(endPoints[1][0]==row&&endPoints[1][1]==col)break;
-        // console.log("HERERERERERE"+grid)
+        
         // Mark the current
         // cell as visited
         
