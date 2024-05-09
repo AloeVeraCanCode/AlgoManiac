@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../CSS/SpanningTree/DrawingBoard.css';
-import Konva from 'konva';
+import Konva from './konva';
 export default function DrawingBoard(props) {
   console.log("Board")
   React.useEffect(()=>{var stage = new Konva.Stage({
