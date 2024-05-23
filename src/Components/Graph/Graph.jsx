@@ -85,13 +85,13 @@ export default function Graph(props) {
     if(props.run){
     var newGraph=Prim(graph,setGraph);
     subanimate(newGraph,setGraph,props.setRun);
-    // console.log()
     }
     if(props.clear)
     {
       node=0;
-      props.setClear(false);
+      setId(1);
       setGraph({'nodes':{1:{x:-30,y:-30,color:'red'}},'edges':{1:[[1,10,'green']]}});
+      props.setClear(false);
     }
   })
   return (

@@ -5,3 +5,10 @@
     margin-left:10px;
     border-left-color: white;
 }
+.Topdiv{
+    display:flex;
+    flex-direction: column;
+}
+.switch{
+   margin-right: auto;
+}

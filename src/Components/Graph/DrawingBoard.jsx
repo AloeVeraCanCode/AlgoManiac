@@ -1,12 +1,13 @@
 import React from 'react'
 import '../../CSS/SpanningTree/DrawingBoard.css';
-import Konva from './konva';
+import Konva from 'konva';
+import Switch from 'react-switch';
 export default function DrawingBoard(props) {
   console.log("Board")
   React.useEffect(()=>{var stage = new Konva.Stage({
     container: 'div',
     width: 1300,
-    height: 650,
+    height: 630,
   });
   var layer = new Konva.Layer();
   const drawEdge=(a,b,c,d,cost,col)=>{
@@ -93,9 +94,13 @@ export default function DrawingBoard(props) {
   stage.add(layer);
   }
 )
-
   return (
+    <div className="Topdiv">
+    <div className="switch">
+    <Switch ></Switch>
+    </div>
     <div id="div" ></div>
+    </div>
    
   )
 }
